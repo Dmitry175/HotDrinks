@@ -1,0 +1,23 @@
+﻿@page 
+@model HotDrinks.Pages.AddActionsModel
+@{
+}
+
+<div>
+	<h1>Add Hot Drinks Actions</h1>
+
+	<form method="post">
+		<div class="form-group">
+			<label asp-for="HotDrinkAction.Name"></label>
+			<input asp-for="HotDrinkAction.Name" class="form-control" />
+			<span asp-validation-for="HotDrinkAction.Name" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="HotDrinkAction.Description"></label>
+			<input asp-for="HotDrinkAction.Description" class="form-control" />
+			<span asp-validation-for="HotDrinkAction.Description" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary">Add Action</button>
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	</form>
+</div>

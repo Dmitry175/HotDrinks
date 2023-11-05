@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<form method="post">
+	<div class="form-group">
+		<label for="SelectedDrinkId">Select a Drink:</label>
+		<select class="form-control" asp-for="SelectedDrinkId">
+			<option value=0>-- Select a Drink --</option>
+			@foreach (var drink in Model.Drinks)
+			{
+				<option value="@drink.Id">@drink.Name</option>
+			}
+		</select>
+		<span asp-validation-for="SelectedDrinkId" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btn btn-secondary">Brew the brew!</button>
+
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</form>
+
+<div>
+	@if (Model.Drink != null)
+	{
+		<h2>@Model.Drink.Name</h2>
+		@if (Model.Drink.Actions != null)
+		{
+			<ul>
+				@foreach (var action in Model.Drink.Actions)
+				{
+					<li>@action.Description</li>
+				}
+			</ul>
+		}
+	}
+</div>
+
+

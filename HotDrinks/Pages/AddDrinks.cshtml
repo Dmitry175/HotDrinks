@@ -1,0 +1,60 @@
+﻿@page
+@model HotDrinks.Pages.AddDrinksModel
+@{
+}
+
+<h1>Add a New Drink</h1>
+
+<form method="post">
+	<div class="form-group">
+		<label asp-for="NewDrink.Name">Name</label>
+		<input asp-for="NewDrink.Name" class="form-control" />
+		<span asp-validation-for="NewDrink.Name" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label>Select Actions:</label>
+		@foreach (var action in Model.AllActions)
+		{
+			<div class="form-check">
+				<input type="checkbox" name="SelectedActionIds" value="@action.Id" />
+				<label>@action.Description</label>
+			</div>
+		}
+	</div>
+
+	<button type="submit" class="btn btn-primary">Add Drink</button>
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</form>
+
+@if (Model.AllDrinks != null && Model.AllDrinks.Count > 0)
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var drink in Model.AllDrinks)
+			{
+				<tr>
+					<td>@drink.Name</td>
+					<td>
+						<ul>
+							@foreach (var action in drink.Actions)
+							{
+								<li>@action.Description</li>
+							}
+						</ul>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No Drinks found.</p>
+}

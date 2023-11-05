@@ -1,0 +1,30 @@
+﻿@page
+@model HotDrinks.Pages.DisplayActionsModel
+@{
+}
+
+@if (Model.HotDrinkActions != null && Model.HotDrinkActions.Count > 0)
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var action in Model.HotDrinkActions)
+			{
+				<tr>
+					<td>@action.Name</td>
+					<td>@action.Description</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No Actions found.</p>
+}
